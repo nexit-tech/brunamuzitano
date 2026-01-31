@@ -1,0 +1,151 @@
+.section {
+  padding: 8rem 0;
+  background-color: var(--color-white);
+  overflow: hidden;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 5rem;
+  align-items: center;
+}
+
+.visualColumn {
+  position: relative;
+  height: 550px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.imageCard {
+  width: 100%;
+  height: 100%;
+  background-color: #e8e8e8;
+  border-radius: 40px; 
+  box-shadow: var(--shadow-md);
+  position: relative;
+  z-index: 1;
+  overflow: hidden; 
+}
+
+.floatingWidgetTop,
+.floatingWidgetBottom {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(12px);
+  padding: 0.75rem 1.5rem;
+  border-radius: 50px;
+  box-shadow: var(--shadow-sm);
+  z-index: 2;
+  font-weight: 600;
+  color: var(--color-dark);
+  font-size: 0.9rem;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.floatingWidgetTop {
+  top: 40px;
+  right: -20px;
+  transform: rotate(3deg);
+}
+
+.floatingWidgetBottom {
+  bottom: 60px;
+  left: -30px;
+  transform: rotate(-3deg);
+}
+
+.contentColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.tag {
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-medium);
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.textBody {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #555;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.statsGrid {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.statCard {
+  background-color: var(--color-light);
+  padding: 1.5rem 2rem;
+  border-radius: 24px; 
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 140px;
+  transition: transform 0.3s ease;
+}
+
+.statCard:hover {
+  transform: translateY(-5px);
+}
+
+.statNumber {
+  font-family: var(--font-primary);
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--color-dark);
+}
+
+.statLabel {
+  font-size: 0.8rem;
+  color: #7a6a6a;
+  font-weight: 500;
+}
+
+@media (max-width: 968px) {
+  .section {
+    padding: 5rem 0;
+  }
+
+  .container {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .visualColumn {
+    height: 400px;
+    width: 100%;
+    order: 2; 
+  }
+
+  .imageCard {
+    width: 90%;
+  }
+
+  .floatingWidgetTop { right: 0; }
+  .floatingWidgetBottom { left: 0; }
+  
+  .statsGrid {
+    flex-direction: row; 
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  .statCard {
+    flex: 1;
+  }
+}
