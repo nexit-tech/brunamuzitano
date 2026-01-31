@@ -1,7 +1,8 @@
-"use client"; 
+"use client";
 
+import { useRef } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion"; 
+import { motion, useScroll, useTransform } from "framer-motion"; 
 import Container from "@/components/ui/Container/Container";
 import Title from "@/components/ui/Title/Title";
 import Button from "@/components/ui/Button/Button";
@@ -12,34 +13,64 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.2, 
-      delayChildren: 0.3,
+      staggerChildren: 0.15, 
+      delayChildren: 0.2,
     },
   },
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 30 },
   visible: { 
     opacity: 1, 
     y: 0, 
-    transition: { type: "spring", stiffness: 50 } 
+    transition: { 
+      duration: 0.8,
+      ease: [0.25, 0.8, 0.25, 1]
+    } 
   },
 };
 
 const imageVariants = {
-  hidden: { opacity: 0, scale: 0.9, x: 50 },
+  hidden: { opacity: 0, scale: 0.95, x: 30 },
   visible: { 
     opacity: 1, 
     scale: 1, 
     x: 0,
-    transition: { duration: 0.8, ease: "easeOut", delay: 0.2 }
+    transition: { 
+      duration: 1, 
+      ease: [0.25, 0.8, 0.25, 1],
+      delay: 0.2 
+    }
   },
 };
 
+const badgeFloatVariants = {
+  animate: {
+    y: [0, -8, 0],
+    transition: {
+      duration: 4,
+      repeat: Infinity,
+      ease: "easeInOut"
+    }
+  }
+};
+
+const whatsappLink = "https://wa.me/5522997548462?text=Ol%C3%A1%2C%20Bruna!%20Tudo%20bem%3F%0AGostaria%20de%20mais%20informa%C3%A7%C3%B5es%20referente%20aos%20atendimentos%20%F0%9F%98%8A";
+
 export default function Hero() {
+  const heroRef = useRef<HTMLElement>(null);
+  
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"]
+  });
+
+  const y = useTransform(scrollYProgress, [0, 1], [0, 100]);
+  const opacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
+
   return (
-    <section className={styles.hero}>
+    <section ref={heroRef} className={styles.hero}>
       <Container className={styles.container}>
         
         <motion.div 
@@ -49,7 +80,13 @@ export default function Hero() {
           animate="visible"
         >
           <motion.div variants={itemVariants}>
-            <div className={styles.badge}>Psicologia Clínica & TCC</div>
+            <motion.div 
+              className={styles.badge}
+              variants={badgeFloatVariants}
+              animate="animate"
+            >
+              Psicologia Clínica & TCC
+            </motion.div>
           </motion.div>
           
           <motion.div variants={itemVariants}>
@@ -67,8 +104,12 @@ export default function Hero() {
           </motion.div>
           
           <motion.div variants={itemVariants} className={styles.actions}>
-            <Button variant="primary">Agendar Consulta</Button>
-            <Button variant="outline">Saiba mais</Button>
+            <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
+              <Button variant="primary">Agendar Consulta</Button>
+            </a>
+            <a href="#sobre">
+              <Button variant="outline">Saiba mais</Button>
+            </a>
           </motion.div>
         </motion.div>
         
@@ -78,8 +119,8 @@ export default function Hero() {
             variants={imageVariants}
             initial="hidden"
             animate="visible"
+            style={{ y, opacity }}
           >
-            
             <Image 
               src="/hero.png" 
               alt="Psicóloga Bruna Muzitano"

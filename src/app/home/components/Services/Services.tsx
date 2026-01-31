@@ -1,3 +1,5 @@
+"use client";
+
 import { 
   Sparkles, 
   HeartHandshake, 
@@ -6,6 +8,7 @@ import {
   CloudSun, 
   Fingerprint 
 } from "lucide-react";
+import { motion } from "framer-motion";
 import Container from "@/components/ui/Container/Container";
 import Title from "@/components/ui/Title/Title";
 import styles from "./Services.module.css";
@@ -43,28 +46,72 @@ const services = [
   }
 ];
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.2
+    }
+  }
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: { 
+      type: "spring",
+      stiffness: 50,
+      damping: 20
+    }
+  }
+};
+
 export default function Services() {
   return (
     <section id="tcc" className={styles.section}>
       <Container>
         <div className={styles.header}>
           <Title level={2} align="center">Como posso te ajudar?</Title>
-          <p className={styles.subtitle}>
+          <motion.p 
+            className={styles.subtitle}
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2, duration: 0.5 }}
+          >
             Acolhimento especializado para suas demandas emocionais.
-          </p>
+          </motion.p>
         </div>
 
-        <div className={styles.grid}>
+        <motion.div 
+          className={styles.grid}
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+        >
           {services.map((service, index) => (
-            <div key={index} className={styles.card}>
+            <motion.div 
+              key={index} 
+              className={styles.card}
+              variants={cardVariants}
+              whileHover={{ 
+                y: -12,
+                transition: { type: "spring", stiffness: 300 } 
+              }}
+            >
               <div className={styles.iconBox}>
                 <service.icon size={32} strokeWidth={1.5} />
               </div>
               <h3 className={styles.cardTitle}>{service.title}</h3>
               <p className={styles.cardDescription}>{service.description}</p>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </Container>
     </section>
   );

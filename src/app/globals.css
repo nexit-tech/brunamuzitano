@@ -34,6 +34,12 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+html {
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-dark) var(--color-light);
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-primary);
   font-weight: 700;
@@ -50,26 +56,38 @@ button {
   cursor: pointer;
   font-family: inherit;
 }
-html {
-  scrollbar-width: thin;
-  scrollbar-color: var(--color-medium) var(--color-light);
-  scroll-behavior: smooth;
-}
 
 ::-webkit-scrollbar {
-  width: 12px;
+  width: 10px;
+  height: 10px;
 }
 
 ::-webkit-scrollbar-track {
   background: var(--color-light);
+  border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: var(--color-medium);
-  border-radius: 20px;
+  background-color: var(--color-dark);
+  border-radius: 10px;
   border: 3px solid var(--color-light);
 }
 
 ::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-medium);
+  border-width: 2px;
+}
+
+::-webkit-scrollbar-button {
+  display: none;
+}
+
+::selection {
   background-color: var(--color-dark);
+  color: var(--color-white);
+}
+
+::-moz-selection {
+  background-color: var(--color-dark);
+  color: var(--color-white);
 }
