@@ -101,7 +101,7 @@
 @media (max-width: 968px) {
   .hero {
     min-height: auto;
-    padding: 6rem 0 4rem 0;
+    padding: 8rem 0 4rem 0; 
   }
 
   .container {
@@ -112,6 +112,7 @@
 
   .content {
     align-items: center;
+    order: 1; 
   }
 
   .badge {
@@ -124,17 +125,55 @@
   }
 
   .actions {
+    justify-content: center;
+  }
+
+  .visualColumn {
+    order: 2;
+    margin-top: 1rem;
+  }
+
+  .imageCard {
+    max-width: 380px;
+    width: 85%;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    padding: 6rem 0 3rem 0;
+  }
+
+  .container {
+    gap: 2.5rem;
+  }
+
+  .content {
+    gap: 1.5rem;
+  }
+
+  .title {
+    font-size: 2.25rem; 
+  }
+
+  .description {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  .actions {
     flex-direction: column;
     width: 100%;
     gap: 1rem;
   }
   
+  .actions a, 
   .actions button {
     width: 100%;
   }
 
   .imageCard {
-    max-width: 320px;
-    
+    width: 90%;
+    border-radius: 20px;
   }
 }

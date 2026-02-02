@@ -141,13 +141,13 @@
   color: var(--color-dark);
 }
 
-/* Cor específica para o hover do WhatsApp na lista */
 .interactiveItem:hover .iconWhatsapp {
   color: #25D366; 
 }
 
 .infoContent {
   flex: 1;
+  min-width: 0; 
 }
 
 .infoTitle {
@@ -161,6 +161,9 @@
 .infoText {
   font-size: 0.95rem;
   color: rgba(255, 255, 255, 0.6);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .arrowIcon {
@@ -168,17 +171,13 @@
   opacity: 0;
   transform: translate(-10px, 10px);
   transition: all 0.3s ease;
+  flex-shrink: 0;
 }
 
 .interactiveItem:hover .arrowIcon {
   opacity: 1;
   transform: translate(0, 0);
   color: var(--color-white);
-}
-
-.highlightItem .iconBox {
-  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-  color: white !important; /* Mantém branco mesmo no hover para o gradiente brilhar */
 }
 
 .divider {
@@ -195,29 +194,81 @@
 
   .wrapper {
     grid-template-columns: 1fr;
-    padding: 2.5rem;
+    padding: 3rem 2rem;
     border-radius: 32px;
-    gap: 3.5rem;
+    gap: 3rem;
+  }
+
+  .content {
+    gap: 2rem;
+    text-align: center;
+    align-items: center;
   }
 
   .title {
-    font-size: 2.25rem;
+    font-size: 2.5rem;
+  }
+
+  .text {
+    max-width: 100%;
+    font-size: 1.1rem;
   }
 
   .actions {
     flex-direction: column;
     width: 100%;
+    max-width: 400px;
   }
   
-  .linkButton, .whatsappBtn {
+  .linkButton {
+    width: 100%;
+  }
+  
+  .whatsappBtn {
     width: 100% !important;
+    justify-content: center;
   }
 
   .glassCard {
     padding: 1.5rem;
+    border-radius: 24px;
   }
   
   .infoItem {
     padding: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .wrapper {
+    padding: 2.5rem 1.5rem;
+    border-radius: 24px;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .glassCard {
+    padding: 1.25rem;
+  }
+
+  .infoItem {
+    padding: 0.75rem;
+    gap: 1rem;
+  }
+
+  .iconBox {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+  }
+
+  .infoTitle {
+    font-size: 0.95rem;
+  }
+
+  .infoText {
+    font-size: 0.85rem;
   }
 }

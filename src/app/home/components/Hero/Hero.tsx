@@ -45,17 +45,6 @@ const imageVariants = {
   },
 };
 
-const badgeFloatVariants = {
-  animate: {
-    y: [0, -8, 0],
-    transition: {
-      duration: 4,
-      repeat: Infinity,
-      ease: "easeInOut"
-    }
-  }
-};
-
 const whatsappLink = "https://wa.me/5522997548462?text=Ol%C3%A1%2C%20Bruna!%20Tudo%20bem%3F%0AGostaria%20de%20mais%20informa%C3%A7%C3%B5es%20referente%20aos%20atendimentos%20%F0%9F%98%8A";
 
 export default function Hero() {
@@ -82,8 +71,8 @@ export default function Hero() {
           <motion.div variants={itemVariants}>
             <motion.div 
               className={styles.badge}
-              variants={badgeFloatVariants}
-              animate="animate"
+              whileHover={{ scale: 1.05, y: -4 }}
+              transition={{ type: "spring", stiffness: 400, damping: 17 }}
             >
               Psicologia Clínica & TCC
             </motion.div>
